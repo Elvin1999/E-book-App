@@ -30,6 +30,23 @@ namespace Start {
 					CurrentClient = GetClient(username, password);
 					if (CurrentClient.GetId() != -1) {
 						ClientHomeMenu();
+						cin >> select;
+						system("cls");
+						if (select == 1) {
+							ShowAllBooks();
+						}
+						else if (select == 2) {
+							ShowAllBooks();
+							cout << "Enter book id : " << endl;
+							int id = 0;
+							cin >> id;
+							//auto book = GetBookById(id);
+							//take
+						}
+						else if (select == 3) {
+							//return
+						}
+
 					}
 					else {
 						cout << "ACCESS DENIED" << endl;
