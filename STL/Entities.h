@@ -14,6 +14,9 @@ namespace Entities {
 		{
 			myId = ++ID;
 		}
+		void SetId(const int& id) {
+			myId = id;
+		}
 		int GetId()const {
 			return myId;
 		}
@@ -59,6 +62,9 @@ namespace Entities {
 		{
 			this->fullname = fullname;
 		}
+		void SetFullname(const string& name) {
+			this->fullname = name;
+		}
 		 string GetFullname()const {
 			return fullname;
 		}
@@ -68,6 +74,12 @@ namespace Entities {
 		User user;
 		string fullname;
 	public:
+		void SetUser(const User& user) {
+			this->user = user;
+		 }
+		Admin() {
+
+		}
 		Admin(const User& user,const string&fullname)
 			:Entity() ,	Base(fullname)
 		{
@@ -156,6 +168,9 @@ namespace Entities {
 		Client() {
 			myId = -1;
 		}
+		void SetUser(const User& user) {
+			this->user = user;
+		}
 		Client(const User&user,const string&fullname)
 			:Base(fullname),Entity()
 		{
@@ -172,7 +187,9 @@ namespace Entities {
 			rent.takeIn = takeIn;
 			
 			rent.totalPayment = book.GetPrice() * days;
+			rent.takeOut.month = takeIn.month;
 			rent.takeOut.day += days;
+			rent.takeOut.year = takeIn.year;
 
 			rents.push_back(rent);
 			cout << user.GetUsername() << " took book succesfully" << endl;

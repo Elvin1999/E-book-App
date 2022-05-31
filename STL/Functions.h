@@ -5,44 +5,47 @@ using namespace DatabaseSection;
 
 
 bool ClientExists(const string& username, const string& password) {
-	for (auto user : database.Clients) {
-		if (user.GetUser().GetUsername() == username &&
-			user.GetUser().GetPassword() == password) {
+	for (int i = 0; i < database.client_count;i++) {
+		auto user = database.clients[i]->GetUser();
+		if (user.GetUsername() == username &&
+			user.GetPassword() == password) {
 			return true;
 		}
 	}
 	return false;
 }
-Client GetClient(const string& username, const string& password) {
+Client* GetClient(const string& username, const string& password) {
 	bool hasUser = ClientExists(username, password);
 	if (hasUser) {
-		for (auto user : database.Clients) {
-			if (user.GetUser().GetUsername() == username &&
-				user.GetUser().GetPassword() == password) {
-				return user;
+		for (int i = 0; i < database.client_count; i++) {
+			auto user = database.clients[i]->GetUser();
+			if (user.GetUsername() == username &&
+				user.GetPassword() == password) {
+				return database.clients[i];
 			}
 		}
 	}
-	return Client();
+	return nullptr;
 }
 
 
-Book GetBookById(int id) {
-	for (auto book : database.Books) {
-		if (book.GetId() == id) {
-			return book;
+Book* GetBookById(int id) {
+	for (int i = 0; i < database.book_count;i++) {
+		if (database.books[i]->GetId() == id) {
+			return database.books[i];
 		}
 	}
-	return Book();
+	return nullptr;
 }
 
 void ShowAllBooks() {
-	for (auto book : database.Books) {
-		cout << "Book ID : " << book.GetId() << endl;
-		cout << "Title : " << book.GetTitle() << endl;
-		cout << "Author : " << book.GetAuthor() << endl;
-		cout << "Price : " << book.GetPrice() <<"$" << endl;
-		cout << "Rating : " << book.GetRating() <<"*"<< endl;
+	for (int i = 0; i < database.book_count;i++) {
+		auto book = database.books[i];
+		cout << "Book ID : " << book->GetId() << endl;
+		cout << "Title : " <<   book->GetTitle() << endl;
+		cout << "Author : " <<  book->GetAuthor() << endl;
+		cout << "Price : " <<   book->GetPrice() <<"$" << endl;
+		cout << "Rating : " <<  book->GetRating() <<"*"<< endl;
 		cout << endl << endl;
 	}
 }

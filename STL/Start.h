@@ -3,7 +3,7 @@
 using namespace std;
 
 namespace Start {
-	Client CurrentClient;
+	Client* CurrentClient;
 	class Controller {
 	public:
 		static void StartProject(){
@@ -28,7 +28,7 @@ namespace Start {
 					string password;
 					cin >> password;
 					CurrentClient = GetClient(username, password);
-					if (CurrentClient.GetId() != -1) {
+					if (CurrentClient->GetId() != -1) {
 						ClientHomeMenu();
 						cin >> select;
 						system("cls");
@@ -56,10 +56,10 @@ namespace Start {
 							int days = 0;
 							cin >> days;
 
-							CurrentClient.TakeBook(book, days, Date{day,month,year});
+							CurrentClient->TakeBook(*book, days, Date{day,month,year});
 						}
 						else if (select == 3) {
-							CurrentClient.ShowAllRents();
+							CurrentClient->ShowAllRents();
 						}
 
 					}
@@ -75,12 +75,17 @@ namespace Start {
 			}
 		}
 
-
+		static void AdminHomeMenu() {
+			cout << "Show All Books" << endl;
+			cout << "Show All Rents" << endl;
+			cout << "Add Book" << endl;
+		}
 		static void FirstHomeMenu() {
 			cout << "Admin  [1]" << endl;
 			cout << "Client [2]" << endl;
 		}
 		static void ClientHomeMenu() {
+
 			cout << "Show   Books [1]" << endl;
 			cout << "Take   Book  [2]" << endl;
 			cout << "Show All your rents  [3]" << endl;
