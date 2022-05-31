@@ -92,7 +92,7 @@ namespace Entities {
 		double rating;
 	public:
 		Book() {
-
+			myId = -1;
 		}
 		Book(const string& title, const string& author,
 			const double& price, const double& rating)
@@ -131,6 +131,14 @@ namespace Entities {
 		}
 		double GetRating()const {
 			return rating;
+		}
+
+		void ShowBook()const {
+			cout << "ID : " << GetId() << endl;
+			cout << "Title : " << GetTitle() << endl;
+			cout << "Author : " << GetAuthor() << endl;
+			cout << "Price : " << GetPrice() << "$" << endl;
+			cout << "Rating : " << rating << endl;
 		}
 	};
 
@@ -171,6 +179,17 @@ namespace Entities {
 			cout << "Payment : " << rent.totalPayment << "$" << endl;
 
 		}
+
+		void ShowAllRents() {
+			for (auto r : rents) {
+				r.book.ShowBook();
+				cout << "Take IN :   " << r.takeIn.day << "." << r.takeIn.month << "." << r.takeIn.year << endl;
+				cout << "Take OUT :   " << r.takeOut.day << "." << r.takeOut.month << "." << r.takeOut.year << endl;
+				cout << "Total PAYMENT : " << r.totalPayment << "$" << endl;
+			}
+		}
+
+
 	};
 
 

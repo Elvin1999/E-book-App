@@ -40,11 +40,26 @@ namespace Start {
 							cout << "Enter book id : " << endl;
 							int id = 0;
 							cin >> id;
-							//auto book = GetBookById(id);
-							//take
+							auto book = GetBookById(id);
+							cout << "From which date you will take" << endl;
+							cout << "Day : "<<endl;
+							int day = 0;
+							cin >> day;
+							cout << "Enter month : " << endl;
+							int month = 0;
+							cin >> month;
+							cout << "Enter year : " << endl;
+							int year = 0;
+							cin >> year;
+
+							cout << "How many days you take book" << endl;
+							int days = 0;
+							cin >> days;
+
+							CurrentClient.TakeBook(book, days, Date{day,month,year});
 						}
 						else if (select == 3) {
-							//return
+							CurrentClient.ShowAllRents();
 						}
 
 					}
@@ -68,7 +83,7 @@ namespace Start {
 		static void ClientHomeMenu() {
 			cout << "Show   Books [1]" << endl;
 			cout << "Take   Book  [2]" << endl;
-			cout << "Return Book  [3]" << endl;
+			cout << "Show All your rents  [3]" << endl;
 
 		}
 	};

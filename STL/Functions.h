@@ -26,6 +26,16 @@ Client GetClient(const string& username, const string& password) {
 	return Client();
 }
 
+
+Book GetBookById(int id) {
+	for (auto book : database.Books) {
+		if (book.GetId() == id) {
+			return book;
+		}
+	}
+	return Book();
+}
+
 void ShowAllBooks() {
 	for (auto book : database.Books) {
 		cout << "Book ID : " << book.GetId() << endl;
